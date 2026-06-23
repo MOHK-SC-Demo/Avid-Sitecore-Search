@@ -2,17 +2,17 @@
 
 import { JSX } from 'react'
 import { PAGE_EVENTS_HOME } from '@/app/_data/constants';
-import { HOME_HERO_RFKID, HIGHLIGHTED_ARTICLES_RFKID, DEFAULT_QUESTION } from './_data/customizations';
+import { HIGHLIGHTED_ARTICLES_RFKID, DEFAULT_QUESTION } from './_data/customizations';
 import withPageTracking from '@/app/_hocs/withPageTracking';
 import HomeHighlighted from '@/app/_widgets/HomeHighlighted';
 import QuestionsAnswers from '@/app/_widgets/QuestionsAnswers'
-import { HTMBlockWidget } from '@sitecore-search/react';
+import HomeHero from '@/app/_components/HomeHero';
 
 const Home = (): JSX.Element => {
   return (
     <>
-      <HTMBlockWidget rfkId={HOME_HERO_RFKID} />
-      <div className="mx-auto w-[80%]">
+      <HomeHero />
+      <div className="mx-auto w-[80%] pt-12 md:pt-16">
         <QuestionsAnswers
             rfkId="rfkid_qa"
             defaultKeyphrase={DEFAULT_QUESTION}

@@ -14,7 +14,7 @@ const Search = (): JSX.Element => {
   return (
     <div className="max-w-[1248px] m-auto pt-10">
       <div>
-        <h2 className="text-gray-800 dark:text-gray-100 text-lg w-full text-left">{`Showing results for "${query}"`}</h2>
+        <h2 className="text-avid-text text-lg w-full text-left">{`Showing results for "${query}"`}</h2>
         <QuestionsAnswers
           key={`${query}-questions`}
           rfkId="rfkid_qa"

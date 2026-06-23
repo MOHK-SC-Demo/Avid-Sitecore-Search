@@ -20,10 +20,10 @@ const SuggestionBlock = ({ items, title, blockId, filterAttribute, disabled }: S
     <>
       {items.length > 0 && (
         <PreviewSearch.SuggestionsGroup className="flex flex-1 flex-col" id={blockId} filterAttribute={filterAttribute}>
-          <h2 className="box-border pl-1 block text-lg font-bold m-2 dark:text-gray-100">{title}</h2>
+          <h2 className="box-border pl-1 block text-lg font-bold m-2 text-avid-text">{title}</h2>
           {items.map(({ text }) => (
             <PreviewSearch.SuggestionTrigger
-              className="cursor-pointer p-2 text-sm data-[state=active]:outline-none data-[state=active]:text-gray-900 dark:data-[state=active]:text-gray-200  data-[state=active]:bg-white dark:data-[state=active]:bg-gray-700  focus:outline-none focus:bg-white dark:focus:bg-gray-700 focus:text-bold hover:outline-none hover:text-gray-900 hover:bg-white dark:hover:text-gray-200 dark:hover:bg-gray-700 dark:text-gray-100 "
+              className="cursor-pointer p-2 text-sm text-avid-text data-[state=active]:outline-none data-[state=active]:text-avid-text data-[state=active]:bg-avid-surface focus:outline-none focus:bg-avid-surface hover:outline-none hover:text-avid-text hover:bg-avid-surface"
               id={text}
               key={text}
               asChild

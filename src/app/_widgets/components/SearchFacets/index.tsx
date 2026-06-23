@@ -25,13 +25,13 @@ const PriceFacet = ({ min, max }: PriceFacetProps) => {
       autoAdjustValues={false}
       className="relative flex items-center select-none touch-none w-full h-5 mb-8"
     >
-      <RangeFacet.Track className="relative grow h-[3px] rounded-full bg-gray-400">
-        <RangeFacet.Range className="absolute h-full bg-gray-700 rounded-full" />
+      <RangeFacet.Track className="relative grow h-[3px] rounded-full bg-avid-border">
+        <RangeFacet.Range className="absolute h-full bg-avid-purple rounded-full" />
       </RangeFacet.Track>
-      <RangeFacet.Start className="block w-5 h-5 bg-[white] shadow-[0_2px_10px_grey] text-[10px] leading-5 text-center cursor-pointer rounded-[10px] hover:bg-gray-700 focus:shadow-[0_0_0_3px_grey]">
+      <RangeFacet.Start className="block w-5 h-5 bg-avid-text shadow-[0_2px_10px_grey] text-[10px] leading-5 text-center cursor-pointer rounded-[10px] hover:bg-avid-purple focus:shadow-[0_0_0_3px_var(--avid-purple)]">
         {(value) => <span className="absolute text-sm left-0 top-[30px]">${value}</span>}
       </RangeFacet.Start>
-      <RangeFacet.End className="block w-5 h-5 bg-[white] shadow-[0_2px_10px_grey] text-[10px] leading-5 text-center cursor-pointer rounded-[10px] hover:bg-gray-700 focus:shadow-[0_0_0_3px_grey]">
+      <RangeFacet.End className="block w-5 h-5 bg-avid-text shadow-[0_2px_10px_grey] text-[10px] leading-5 text-center cursor-pointer rounded-[10px] hover:bg-avid-purple focus:shadow-[0_0_0_3px_var(--avid-purple)]">
         {(value) => <span className="absolute text-sm left-0 top-[30px]">${value}</span>}
       </RangeFacet.End>
     </SearchResultsFacetValueRange>
@@ -55,10 +55,10 @@ const SearchFacets = ({ facets }: SearchFacetsProps) => {
         <AccordionFacets.Facet
           facetId={f.name}
           key={f.name}
-          className="block border-b mb-4 pb-4 border-gray-200 dark:border-gray-600"
+          className="block border-b mb-4 pb-4 border-avid-border"
         >
           <AccordionFacets.Header className="flex">
-            <AccordionFacets.Trigger className="text-sm md:text-base font-semibold focus:outline-gray-700">
+            <AccordionFacets.Trigger className="text-sm md:text-base font-semibold focus:outline-avid-purple text-avid-text">
               {f.label}
             </AccordionFacets.Trigger>
           </AccordionFacets.Header>
@@ -74,7 +74,7 @@ const SearchFacets = ({ facets }: SearchFacetsProps) => {
                     }}
                     className="group flex items-center text-sm cursor-pointer"
                   >
-                    <AccordionFacets.ItemCheckbox className="form-checkbox flex-none w-5 h-5 border border-gray-300 rounded cursor-pointer transition duration-500 ease-in-out hover:border-heading focus:outline-gray-700 aria-checked:bg-gray-700 aria-checked:hover:bg-heading aria-checked:focus:bg-heading">
+                    <AccordionFacets.ItemCheckbox className="form-checkbox flex-none w-5 h-5 border border-avid-border rounded cursor-pointer transition duration-500 ease-in-out hover:border-avid-purple focus:outline-avid-purple aria-checked:bg-avid-purple aria-checked:hover:bg-avid-purple aria-checked:focus:bg-avid-purple">
                       <AccordionFacets.ItemCheckboxIndicator className="text-white w-5 h-5 ">
                         <CheckIcon />
                       </AccordionFacets.ItemCheckboxIndicator>

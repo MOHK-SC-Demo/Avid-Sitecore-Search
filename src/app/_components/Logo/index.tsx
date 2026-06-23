@@ -26,7 +26,7 @@ const Logo = () => {
     </svg>
   );
 
-  if (logoUrl && logoUrl.includes('https')) return <img src={logoUrl} alt="Customer Logo" className="mr-8" style={{height: `${LOGO_IMAGE_HEIGHT}px`}} />
+  if (logoUrl && logoUrl.includes('https')) return <img src={logoUrl} alt="Avid" className="mr-8 w-auto" style={{height: `${LOGO_IMAGE_HEIGHT}px`}} />
 
   return sitecoreLogo
 

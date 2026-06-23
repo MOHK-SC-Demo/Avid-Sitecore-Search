@@ -42,9 +42,9 @@ export const ArticleDetailComponent = ({ id }: ArticleDetailProps): JSX.Element 
     <div className="max-w-[1280px] m-auto pt-10">
       <div className="items-center flex justify-between">
         <div className="max-w-[50%] min-h-[300px] flex items-center flex-col">
-          <h1 className="text-2xl font-bold text-gray-700 dark:text-gray-100 w-full mb-3 mt-4">{mainArticle.name}</h1>
-          <div className="text-left text-md text-gray-700 dark:text-gray-100">{mainArticle?.subtitle}</div>
-          <div className="text-left leading-tight text-base text-gray-700 dark:text-gray-100">{mainArticle?.description}</div>
+          <h1 className="text-2xl font-bold text-avid-text w-full mb-3 mt-4">{mainArticle.name}</h1>
+          <div className="text-left text-md text-avid-text">{mainArticle?.subtitle}</div>
+          <div className="text-left leading-tight text-base text-avid-text-muted">{mainArticle?.description}</div>
         </div>
         <div className="max-w-[50%] min-h-[300px] flex items-center">
           <img className="max-w-[500px]" src={mainArticle.image_url || DEFAULT_IMAGE} />

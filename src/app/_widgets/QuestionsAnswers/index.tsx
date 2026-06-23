@@ -15,7 +15,7 @@ type Question = {
 
 const MainQuestionComponent = ({ answer, question }: Question) => {
   return (
-    <div className="p-3 dark:text-gray-100">
+    <div className="p-3 text-avid-text">
       <h4 className="text-lg font-bold ">{question}</h4>
       <p className="mt-2">{answer}</p>
     </div>
@@ -28,12 +28,12 @@ type RelatedQuestionsProps = {
 
 const RelatedQuestionsComponent = ({ relatedQuestions = [] }: RelatedQuestionsProps) => {
   return (
-    <div className="dark:text-gray-100">
+    <div className="text-avid-text">
       {relatedQuestions.length > 0 && (
         <Accordion className="w-full mt-4 px-2" type="multiple">
           <h4 className="text-md font-bold mb-4">People also ask ...</h4>
           {relatedQuestions.map(({ answer, question }, index) => (
-            <Item className="w-full cursor-pointer border-b dark:border-b-gray-600 py-4" value={`${answer}-${index}`} key={index}>
+            <Item className="w-full cursor-pointer border-b border-avid-border py-4" value={`${answer}-${index}`} key={index}>
               <Header>
                 <Trigger className="w-full flex justify-between gap-x-2 text-left text-sm">
                   <span>{question}</span>
@@ -77,7 +77,7 @@ export const QuestionsAnswersComponent = ({ defaultKeyphrase = '', defaultRelate
   return (
     <div>
       {((answer && question) || relatedQuestionsResponse.length > 0) && (
-        <div className="rounded-md border border-gray-200 dark:border-gray-600 p-3 my-5 shadow-md shadow-slate-300 dark:shadow-slate-500">
+        <div className="rounded-md border border-avid-border p-3 my-5 shadow-md bg-avid-surface">
           {answer && question && <MainQuestionComponent answer={answer} question={question} />}
           {relatedQuestionsResponse.length > 0 && (
             <RelatedQuestionsComponent relatedQuestions={relatedQuestionsResponse} />

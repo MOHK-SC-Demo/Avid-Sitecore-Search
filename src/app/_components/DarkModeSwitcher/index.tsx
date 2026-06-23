@@ -2,13 +2,16 @@ import { Moon, Sun } from 'lucide-react';
 import { useEffect, useState } from 'react';
 
 export function DarkmodeSwitch() {
-  const [isDarkMode, setIsDarkMode] = useState(false);
+  const [isDarkMode, setIsDarkMode] = useState(true);
 
   useEffect(() => {
     const theme = localStorage.getItem('theme');
-    if (theme === 'dark') {
+    if (theme !== 'light') {
       window.document.documentElement.classList.add('dark');
       setIsDarkMode(true);
+    } else {
+      window.document.documentElement.classList.remove('dark');
+      setIsDarkMode(false);
     }
   }, []);
 
@@ -25,7 +28,7 @@ export function DarkmodeSwitch() {
 
   return (
     <button
-      className="text-gray-400 hover:bg-slate-200 p-1 mx-2 flex items-center justify-center rounded-md dark:hover:bg-slate-800"
+      className="text-avid-text-muted hover:text-avid-purple p-1 mx-2 flex items-center justify-center rounded-md transition-colors"
       onClick={handleClick}
       aria-label={`Toggle ${isDarkMode ? 'light' : 'dark'} mode`}
     >

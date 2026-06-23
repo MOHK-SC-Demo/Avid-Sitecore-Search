@@ -74,14 +74,14 @@ export const PreviewSearchComponent = ({ defaultItemsPerPage = 6 }) => {
       <form onSubmit={handleSubmit}>
         <PreviewSearch.Input
           name="query"
-          className="w-[800px] rounded-sm box-border py-1 px-1 focus:outline-solid focus:outline-1 focus:outline-gray-200 dark:focus:outline-gray-900 dark:border-gray-900 border-1 bg-gray-100 dark:bg-gray-800 dark:text-gray-100"
+          className="w-[800px] rounded-sm box-border py-1 px-1 focus:outline-solid focus:outline-1 focus:outline-avid-purple border border-avid-border bg-avid-surface-elevated text-avid-text"
           onChange={keyphraseHandler}
           autoComplete="off"
           placeholder="Type to search..."
         />
       </form>
       <PreviewSearch.Content
-        className="flex justify-center pt-0 h-[400px] shadow-[2px_5px_5px_5px_rgba(0,0,0,0.3)] transition-opacity	w-[var(--radix-popover-trigger-width)] bg-gray-100 dark:bg-gray-800"
+        className="flex justify-center pt-0 h-[400px] shadow-[2px_5px_5px_5px_rgba(0,0,0,0.3)] transition-opacity	w-[var(--radix-popover-trigger-width)] bg-avid-surface-elevated"
       >
         <Spinner loading={loading} />
 
@@ -96,7 +96,7 @@ export const PreviewSearchComponent = ({ defaultItemsPerPage = 6 }) => {
               {({ isFetching: loading, data: { content: articles = [] } = {} }) => (
                 <PreviewSearch.Items
                   data-loading={loading}
-                  className="flex flex-[3] bg-white dark:bg-gray-700 overflow-y-auto data-[loading=false]:grid data-[loading=false]:list-none data-[loading=false]:m-0 data-[loading=false]:p-2 data-[loading=false]:gap-3 data-[loading=false]:grid-cols-3"
+                  className="flex flex-[3] bg-avid-surface overflow-y-auto data-[loading=false]:grid data-[loading=false]:list-none data-[loading=false]:m-0 data-[loading=false]:p-2 data-[loading=false]:gap-3 data-[loading=false]:grid-cols-3"
                 >
                   <Spinner loading={loading} />
                   {!loading &&
@@ -109,9 +109,9 @@ export const PreviewSearchComponent = ({ defaultItemsPerPage = 6 }) => {
                             onItemClick({ id: article.id, index, sourceId: article.source_id });
                             router.push('/detail/' + article.id);
                           }}
-                          className="flex box-border no-underline w-full text-black focus:shadow-md"
+                          className="flex box-border no-underline w-full text-avid-text focus:shadow-md"
                         >
-                          <ArticleCard.Root className="w-full shadow-[2px_2px_4px_rgba(0,0,0,0.3)] rounded-md p-2 cursor-pointer block border-transparent border-solid border text-center focus-within:shadow-[2px_2px_4px_rgba(0,0,0,0.8)] hover:shadow-[2px_2px_4px_rgba(0,0,0,0.8)] dark:text-white">
+                          <ArticleCard.Root className="w-full shadow-[2px_2px_4px_rgba(0,0,0,0.3)] rounded-md p-2 cursor-pointer block border-transparent border-solid border text-center focus-within:shadow-[2px_2px_4px_rgba(0,0,0,0.8)] hover:shadow-[2px_2px_4px_rgba(0,0,0,0.8)] text-avid-text">
                             <div className="m-auto mb-[10px] relative h-[6em] flex justify-center items-center overflow-hidden">
                               <Image
                                 src={article.image_url}

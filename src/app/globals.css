@@ -1,37 +1,51 @@
 @import "tailwindcss";
 
+/* Light mode (when .dark is not on <html>) */
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --avid-purple: #7826e7;
+  --avid-bg: #ffffff;
+  --avid-surface: #f8f9fa;
+  --avid-surface-elevated: #ebf0f4;
+  --avid-text: #161f2b;
+  --avid-text-muted: #6d7992;
+  --avid-border: #a9b4bf;
+}
+
+/* Dark mode (Avid default) */
+.dark {
+  --avid-purple: #7826e7;
+  --avid-bg: #000000;
+  --avid-surface: #1d212a;
+  --avid-surface-elevated: #161f2b;
+  --avid-text: #ffffff;
+  --avid-text-muted: #a9b4bf;
+  --avid-border: #374562;
 }
 
 @theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
-}
-
-body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  --color-avid-purple: var(--avid-purple);
+  --color-avid-bg: var(--avid-bg);
+  --color-avid-surface: var(--avid-surface);
+  --color-avid-surface-elevated: var(--avid-surface-elevated);
+  --color-avid-text: var(--avid-text);
+  --color-avid-text-muted: var(--avid-text-muted);
+  --color-avid-border: var(--avid-border);
+  --font-sans: var(--font-montserrat), ui-sans-serif, system-ui, sans-serif;
 }
 
 @custom-variant dark (&:where(.dark, .dark *));
+
+body {
+  background: var(--avid-bg);
+  color: var(--avid-text);
+  font-family: var(--font-sans);
+}
 
 nextjs-portal {
   display: none;
 }
 
 body {
-  padding: 0 !important; 
+  padding: 0 !important;
   overflow: auto !important;
 }

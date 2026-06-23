@@ -19,7 +19,7 @@ export const DataBar = (): JSX.Element => {
 
     return (
         <div className='fixed top-0 right-[-400] h-full w-[450] z-[501]  transition-[right] delay-700 duration-700 ease-in-out { isOpen ? "open" : "closed" }'>
-            <div title="Guest Data"  className="absolute left-[39] top-[160] w-[50] h-50] block text-black-500 hover:left-[21] hover:duration-[300ms] bg-[#006EF9]">
+            <div title="Guest Data"  className="absolute left-[39] top-[160] w-[50] h-50] block text-white hover:left-[21] hover:duration-[300ms] bg-avid-purple">
                 <button onClick={handleClick} type='button'>
                     <svg className="h-6 w-6 fill-current" viewBox='0 0 20 20'>
                         <path fillRule="evenodd" d={isOpen ? open : closed}/>

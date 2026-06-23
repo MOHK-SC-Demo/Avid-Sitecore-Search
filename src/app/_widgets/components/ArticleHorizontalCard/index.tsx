@@ -22,9 +22,9 @@ const ArticleHorizontalItemCard = ({ className = '', article, onItemClick, index
   return (
     <ArticleCard.Root
       key={article.id}
-      className={`group flex flex-row p-4 my-4 flex-nowrap max-h-52 w-full relative border border-gray-300 dark:border-gray-600 rounded-md hover:shadow-lg hover:scale-105 hover:transition-all hover:ease-linear	hover:duration-300 focus-within:scale-105 focus-within:transition-all focus-within:ease-linear focus-within:duration-300 focus-within:hover:shadow-lg ${className}`}
+      className={`group flex flex-row p-4 my-4 flex-nowrap max-h-52 w-full relative border border-avid-border rounded-md hover:shadow-lg hover:scale-105 hover:transition-all hover:ease-linear	hover:duration-300 focus-within:scale-105 focus-within:transition-all focus-within:ease-linear focus-within:duration-300 focus-within:hover:shadow-lg bg-avid-surface ${className}`}
     >
-      <div className="w-[25%] flex-none overflow-hidden bg-gray-200 ">
+      <div className="w-[25%] flex-none overflow-hidden bg-avid-surface-elevated ">
         <Image
           src={validImageUrl}
           className="h-full w-full object-cover object-center lg:h-full lg:w-full"
@@ -35,7 +35,7 @@ const ArticleHorizontalItemCard = ({ className = '', article, onItemClick, index
       </div>
       <div className="pl-4 grow flex-col">
         <a
-          className="focus:outline-indigo-500"
+          className="focus:outline-avid-purple"
           href={article.url}
           onClick={(event) => {
             event.preventDefault();
@@ -50,7 +50,7 @@ const ArticleHorizontalItemCard = ({ className = '', article, onItemClick, index
           <span aria-hidden="true" className="absolute inset-0"></span>
           <ArticleCard.Title className="text-base">{article.name || article.title}</ArticleCard.Title>
         </a>
-        <ArticleCard.Subtitle className="mt-3 text-sm text-gray-600 dark:text-gray-300 h-[100px] overflow-hidden">
+        <ArticleCard.Subtitle className="mt-3 text-sm text-avid-text-muted h-[100px] overflow-hidden">
           {article.subtitle}
         </ArticleCard.Subtitle>
       </div>

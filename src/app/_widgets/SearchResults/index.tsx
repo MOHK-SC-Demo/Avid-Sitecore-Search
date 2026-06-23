@@ -90,9 +90,9 @@ export const SearchResultsComponent = ({
   }
   return (
     <div>
-      <div className="flex relative max-w-full px-4 text-black dark:text-gray-100 text-opacity-75">
+      <div className="flex relative max-w-full px-4 text-avid-text text-opacity-75">
         {isFetching && (
-          <div className="w-full h-full fixed top-0 left-0 bottom-0 right-0 z-30 bg-white dark:bg-gray-800 opacity-50">
+          <div className="w-full h-full fixed top-0 left-0 bottom-0 right-0 z-30 bg-avid-surface opacity-50">
             <div className="absolute top-[50%] left-[50%] -translate-x-[50%] -translate-y-[50%] flex flex-col justify-center items-center z-40">
               <Spinner loading />
             </div>

@@ -1,5 +1,5 @@
 "use client"
-import { Geist, Geist_Mono } from "next/font/google";
+import { Montserrat } from "next/font/google";
 import "./globals.css";
 import Footer from '@/app/_components/Footer'
 import Header from '@/app/_components/Header';
@@ -9,14 +9,10 @@ import DataBar from '@/app/_components/DataBar';
 import { SEOWidget, WidgetsProvider } from '@sitecore-search/react';
 import { useEffect } from "react";
 
-const geistSans = Geist({
-  variable: "--font-geist-sans",
+const montserrat = Montserrat({
+  variable: "--font-montserrat",
   subsets: ["latin"],
-});
-
-const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
-  subsets: ["latin"],
+  weight: ["300", "400", "500", "600", "700"],
 });
 
 const SEARCH_CONFIG = {
@@ -39,17 +35,17 @@ export default function RootLayout({
   }, []);
 
   return (
-    <html lang="en">
+    <html lang="en" className="dark">
       <head>
         <meta charSet="UTF-8" />
         <link rel="icon" href="/favicon.ico" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <title>Sitecore Search Sandbox</title>
+        <title>Avid</title>
       </head>
-      <body className={`${geistSans.variable} ${geistMono.variable} antialiased`}>
+      <body className={`${montserrat.variable} antialiased bg-avid-bg text-avid-text`}>
         <LanguageContext.Provider value={{ language, setLanguage }}>
             <DataBar />
-            <div className="bg-white dark:bg-gray-700">
+            <div className="bg-avid-bg text-avid-text">
               <WidgetsProvider 
                 env={SEARCH_CONFIG.env}
                 customerKey={SEARCH_CONFIG.customerKey}
@@ -58,7 +54,7 @@ export default function RootLayout({
               >
                 <SEOWidget rfkId={'demo_search_seo'} />
                 <Header />
-                <main className="w-full m-auto pt-[100px] min-h-[700px] bg-white dark:bg-gray-700">
+                <main className="w-full m-auto pt-[100px] min-h-[700px] bg-avid-bg text-avid-text">
                   {children}
                 </main>
                 <Footer />
