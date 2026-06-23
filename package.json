@@ -14,7 +14,7 @@
     "@sitecore-search/react": "2.6.3",
     "@sitecore-search/ui": "2.6.3",
     "lucide-react": "^0.436.0",
-    "next": "15.2.2",
+    "next": "15.2.8",
     "react": "^18.2.0",
     "react-dom": "^18.2.0"
   },
