@@ -5,8 +5,10 @@
   "scripts": {
     "dev": "next dev --turbopack",
     "build": "next build",
+    "prebuild": "node scripts/clean-content-csv.mjs",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "content:publish": "node scripts/clean-content-csv.mjs"
   },
   "dependencies": {
     "@sitecore-search/react": "2.6.3",

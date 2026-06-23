@@ -13,7 +13,24 @@ const nextConfig: NextConfig = {
   async headers() {
     return [
       {
-        source: '/(.*)',
+        source: '/data/content.csv',
+        headers: [
+          {
+            key: 'Content-Type',
+            value: 'text/csv; charset=utf-8',
+          },
+          {
+            key: 'Cache-Control',
+            value: 'public, max-age=3600, stale-while-revalidate=86400',
+          },
+          {
+            key: 'Access-Control-Allow-Origin',
+            value: '*',
+          },
+        ],
+      },
+      {
+        source: '/((?!data/content\\.csv).*)',
         headers: [
           {
             key: 'Cache-Control',
