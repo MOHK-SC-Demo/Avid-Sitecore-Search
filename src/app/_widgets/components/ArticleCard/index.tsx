@@ -1,25 +1,22 @@
 import { ArticleCard } from '@sitecore-search/ui';
 import Link from 'next/link';
 import Image from 'next/image';
+import type { ActionProp, ItemClickedAction } from '@sitecore-search/react';
 import { DEFAULT_IMG_URL } from '@/app/_data/customizations';
+import type { ArticleModel } from '@/app/_widgets/SearchResults';
 
 type ArticleItemCardProps = {
   className?: string;
-  article: {
-    id: string;
-    name: string;
-    title: string;
-    type: string;
-    image_url?: string;
-    url: string;
-    source_id: string;
-  };
+  article: ArticleModel;
   index: number;
+  onItemClick?: ActionProp<ItemClickedAction>;
 };
 
 
-const ArticleItemCard = ({ className = '', article }: ArticleItemCardProps) => {
+const ArticleItemCard = ({ className = '', article, index, onItemClick }: ArticleItemCardProps) => {
   const validImageUrl = article.image_url?.trim() ? article.image_url : DEFAULT_IMG_URL;
+
+  const title = article.name || article.title || 'Article';
 
   return (
     <ArticleCard.Root
@@ -30,7 +27,7 @@ const ArticleItemCard = ({ className = '', article }: ArticleItemCardProps) => {
         <Image
           src={validImageUrl}
           className="h-full w-full object-cover object-center lg:h-full lg:w-full"
-          alt={article.name || article.title}
+          alt={title}
           width={500}
           height={115}
           loading="lazy"
@@ -40,11 +37,18 @@ const ArticleItemCard = ({ className = '', article }: ArticleItemCardProps) => {
         <Link
           className="focus:outline-avid-purple"
           href={`/detail/${article.id}`}
-          aria-label={`View details for ${article.name || article.title}`}
+          aria-label={`View details for ${title}`}
+          onClick={() => {
+            onItemClick?.({
+              id: article.id,
+              index,
+              sourceId: article.source_id,
+            });
+          }}
         >
           <span aria-hidden="true" className="absolute inset-0"></span>
           <ArticleCard.Title className="mt-4 text-base h-[100px] overflow-hidden">
-            {article.name || article.title}
+            {title}
           </ArticleCard.Title>
         </Link>
         <ArticleCard.Subtitle className="mt-3 text-sm text-avid-text-muted">

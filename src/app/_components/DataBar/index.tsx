@@ -1,17 +1,11 @@
 "use client"
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import { getRfkUserId } from '@sitecore-search/data';
-import { PageController } from '@sitecore-search/react';
 
 export const DataBar = (): JSX.Element => {
     const [isOpen, setIsOpen] = useState(false);
     const open = "M18.278 16.864a1 1 0 0 1-1.414 1.414l-4.829-4.828-4.828 4.828a1 1 0 0 1-1.414-1.414l4.828-4.829-4.828-4.828a1 1 0 0 1 1.414-1.414l4.829 4.828 4.828-4.828a1 1 0 1 1 1.414 1.414l-4.828 4.829 4.828 4.828z";
     const closed = "M4 5h16a1 1 0 0 1 0 2H4a1 1 0 1 1 0-2zm0 6h16a1 1 0 0 1 0 2H4a1 1 0 0 1 0-2zm0 6h16a1 1 0 0 1 0 2H4a1 1 0 0 1 0-2z";
-    const context = PageController.getContext();
-
-    useEffect(() => {
-        setIsOpen(isOpen);
-    }, []);
 
     const handleClick = () => {
         setIsOpen(!isOpen);

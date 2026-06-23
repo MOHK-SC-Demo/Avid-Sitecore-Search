@@ -1,5 +1,5 @@
 "use client"
-import { JSX } from 'react';
+import { JSX, Suspense } from 'react';
 import { useSearchParams } from 'next/navigation';
 
 import { PAGE_EVENTS_SEARCH } from '@/app/_data/constants';
@@ -7,7 +7,7 @@ import withPageTracking from '@/app/_hocs/withPageTracking';
 import QuestionsAnswers from '@/app/_widgets/QuestionsAnswers';
 import SearchResults from '@/app/_widgets/SearchResults';
 
-const Search = (): JSX.Element => {
+const SearchContent = (): JSX.Element => {
   const searchParams = useSearchParams();
   const query = searchParams?.get('q') || '';
 
@@ -26,5 +26,11 @@ const Search = (): JSX.Element => {
     </div>
   );
 };
+
+const Search = (): JSX.Element => (
+  <Suspense fallback={<div className="max-w-[1248px] m-auto pt-10 text-avid-text">Loading...</div>}>
+    <SearchContent />
+  </Suspense>
+);
 
 export default withPageTracking(Search, PAGE_EVENTS_SEARCH);

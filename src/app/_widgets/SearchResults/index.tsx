@@ -66,14 +66,13 @@ export const SearchResultsComponent = ({
       itemsPerPage: defaultItemsPerPage,
       keyphrase: defaultKeyphrase,
     },
-    query: (query): any => {
-      query
-        if (SEARCH_CONFIG.source !== '') {
-          const sources = SEARCH_CONFIG.source.split('|');
-          sources.forEach(source => {
-              query.getRequest().addSource(source.trim());
-          });
-        }
+    query: (query) => {
+      if (SEARCH_CONFIG.source !== '') {
+        const sources = SEARCH_CONFIG.source.split('|');
+        sources.forEach((source) => {
+          query.getRequest().addSource(source.trim());
+        });
+      }
     },
   });
   const totalPages = Math.ceil(totalItems / itemsPerPage);

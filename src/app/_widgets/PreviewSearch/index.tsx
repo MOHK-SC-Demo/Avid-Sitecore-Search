@@ -6,7 +6,7 @@ import Spinner from '@/app/_widgets/components/Spinner';
 import SuggestionBlock from '@/app/_widgets/components/SuggestionBlock';
 import type { PreviewSearchInitialState } from '@sitecore-search/react';
 import { WidgetDataType, usePreviewSearch, widget } from '@sitecore-search/react';
-import { ArticleCard, Presence, PreviewSearch } from '@sitecore-search/ui';
+import { ArticleCard, PreviewSearch } from '@sitecore-search/ui';
 import React from 'react';
 import Image from 'next/image'
 import { useRouter } from 'next/navigation'
@@ -42,14 +42,13 @@ export const PreviewSearchComponent = ({ defaultItemsPerPage = 6 }) => {
       suggestionsList: [{ suggestion: 'title_context_aware', max: 6 }],
       itemsPerPage: defaultItemsPerPage,
     },
-    query: (query): any => {
-      query
-        if (SEARCH_CONFIG.source !== '') {
-          const sources = SEARCH_CONFIG.source.split('|');
-          sources.forEach(source => {
-              query.getRequest().addSource(source.trim());
-          });
-        }
+    query: (query) => {
+      if (SEARCH_CONFIG.source !== '') {
+        const sources = SEARCH_CONFIG.source.split('|');
+        sources.forEach((source) => {
+          query.getRequest().addSource(source.trim());
+        });
+      }
     },
   });
 
@@ -106,6 +105,7 @@ export const PreviewSearchComponent = ({ defaultItemsPerPage = 6 }) => {
                         <PreviewSearch.ItemLink
                           href={article.url}
                           onClick={(e) => {
+                            e.preventDefault();
                             onItemClick({ id: article.id, index, sourceId: article.source_id });
                             router.push('/detail/' + article.id);
                           }}

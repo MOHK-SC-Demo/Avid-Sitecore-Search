@@ -3,10 +3,12 @@
 
 import { useSearchResultsActions, useSearchResultsSelectedFilters } from '@sitecore-search/react';
 
+type SelectedFacet = ReturnType<typeof useSearchResultsSelectedFilters>[number];
+
 const buildRangeLabel = (min: number | undefined, max: number | undefined): string => {
   return typeof min === 'undefined' ? `< $${max}` : typeof max === 'undefined' ? ` > $${min}` : `$${min} - $${max}`;
 };
-const buildFacetLabel = (selectedFacet: any) => {
+const buildFacetLabel = (selectedFacet: SelectedFacet) => {
   if ('min' in selectedFacet || 'max' in selectedFacet) {
     return `${buildRangeLabel(selectedFacet.min, selectedFacet.max)}`;
   }
