@@ -47,7 +47,14 @@ export const ArticleDetailComponent = ({ id }: ArticleDetailProps): JSX.Element 
           <div className="text-left leading-tight text-base text-avid-text-muted">{mainArticle?.description}</div>
         </div>
         <div className="max-w-[50%] min-h-[300px] flex items-center">
-          <img className="max-w-[500px]" src={mainArticle.image_url || DEFAULT_IMAGE} />
+          <img
+            className="max-w-[500px]"
+            src={mainArticle.image_url?.trim() || DEFAULT_IMAGE}
+            onError={(e) => {
+              e.currentTarget.onerror = null;
+              e.currentTarget.src = DEFAULT_IMAGE;
+            }}
+          />
         </div>
       </div>
     </div>

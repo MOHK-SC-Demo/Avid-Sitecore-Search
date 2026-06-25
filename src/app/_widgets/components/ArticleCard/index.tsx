@@ -1,3 +1,4 @@
+import { useState } from 'react';
 import { ArticleCard } from '@sitecore-search/ui';
 import Link from 'next/link';
 import Image from 'next/image';
@@ -14,7 +15,8 @@ type ArticleItemCardProps = {
 
 
 const ArticleItemCard = ({ className = '', article, index, onItemClick }: ArticleItemCardProps) => {
-  const validImageUrl = article.image_url?.trim() ? article.image_url : DEFAULT_IMG_URL;
+  const initialImageUrl = article.image_url?.trim() ? article.image_url : DEFAULT_IMG_URL;
+  const [imgSrc, setImgSrc] = useState(initialImageUrl);
 
   const title = article.name || article.title || 'Article';
 
@@ -25,12 +27,13 @@ const ArticleItemCard = ({ className = '', article, index, onItemClick }: Articl
     >
       <div className="aspect-h-1 aspect-w-1 h-28 w-full overflow-hidden rounded-t-md bg-avid-surface-elevated sm:aspect-none">
         <Image
-          src={validImageUrl}
+          src={imgSrc}
           className="h-full w-full object-cover object-center lg:h-full lg:w-full"
           alt={title}
           width={500}
           height={115}
           loading="lazy"
+          onError={() => setImgSrc(DEFAULT_IMG_URL)}
         />
       </div>
       <div className="m-4 flex-col justify-between relative">

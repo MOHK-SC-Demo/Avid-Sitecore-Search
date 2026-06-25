@@ -39,5 +39,6 @@ export const HIGHLIGHTED_ARTICLES_RFKID = 'search_home_highlight_articles'
 // Change if you want to show a different content type in the highlighted articles widget. This value is case-sensitive. Default is website_content.
 export const HIGHLIGHTED_ARTICLES_CONTENT_TYPE = 'website_content'
 
-// Change if you want a different image to display if the index does not contain an image. Default is https://placehold.co/500x300?text=No Image
-export const DEFAULT_IMG_URL = 'https://placehold.co/500x300?text=No Image';
+// Fallback image when the index has no image or the URL fails to load
+export const DEFAULT_IMG_URL =
+  'https://edge.sitecorecloud.io/avidtech-d6a2e9a9/media/images/all-products-page-images/pt_1000x750.jpg';

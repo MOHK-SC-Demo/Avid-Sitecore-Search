@@ -1,5 +1,6 @@
-export const DEFAULT_IMAGE =
-  'https://wwwsitecorecom.azureedge.net/-/media/sitecoresite/images/global/temp/doc.svg?md=20201209T175156Z';
+import { DEFAULT_IMG_URL } from './customizations';
+
+export const DEFAULT_IMAGE = DEFAULT_IMG_URL;
 
 export const HIGHLIGHT_DATA: {
   pre: string;
