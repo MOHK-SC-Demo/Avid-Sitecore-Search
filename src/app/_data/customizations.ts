@@ -31,7 +31,7 @@ export const HOME_HERO_DESCRIPTION =
   'Avid integrates AI-powered workflow orchestration and intelligent recommendations into the creative process to power iconic movies, binge-worthy TV, news, sports, music, and live performances.';
 
 // Overrides default question in the Q&A widget on the homepage
-export const DEFAULT_QUESTION = 'what is Pro Tools?' 
+export const DEFAULT_QUESTION = 'what is sitecore?' 
 
 // Change if you choose to use a custom highlighted articles widget
 export const HIGHLIGHTED_ARTICLES_RFKID = 'search_home_highlight_articles' 
