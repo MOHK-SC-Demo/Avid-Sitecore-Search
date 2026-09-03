@@ -56,6 +56,7 @@ export const SearchResultsComponent = ({
     queryResult: {
       isLoading,
       isFetching,
+      error,
       data: {
         total_item: totalItems = 0,
         sort: { choices: sortChoices = [] } = {},
@@ -85,10 +86,26 @@ export const SearchResultsComponent = ({
   const [dir, setDir] = useState(defaultCardView);
   const onToggle = (value = defaultCardView) => setDir(value);
 
+  // If the underlying search request fails, react-query exposes an error.
+  // Without surfacing it, the UI may look like a "0 results" issue only.
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  const queryError: any = error;
+
   if (isLoading) {
     return (
       <div className="flex justify-center items-center h-screen w-full">
         <Spinner loading />
+      </div>
+    );
+  }
+
+  if (queryError) {
+    return (
+      <div className="max-w-[1248px] m-auto pt-10 text-avid-text">
+        <h2 className="text-lg font-bold mb-2">Search request failed</h2>
+        <pre className="whitespace-pre-wrap text-sm border border-avid-border rounded-md p-4 bg-avid-surface-elevated">
+          {queryError?.message ?? String(queryError)}
+        </pre>
       </div>
     );
   }
@@ -161,7 +178,12 @@ export const SearchResultsComponent = ({
         )}
         {!hasResults && !isFetching && (
           <div className="w-full flex justify-center">
-            <h3>0 Results</h3>
+            <div className="text-center">
+              <h3>0 Results</h3>
+              <p className="text-xs text-avid-text-muted mt-2">
+                source: {SEARCH_CONFIG.source} | keyphrase: "{effectiveKeyphrase}"
+              </p>
+            </div>
           </div>
         )}
       </div>
