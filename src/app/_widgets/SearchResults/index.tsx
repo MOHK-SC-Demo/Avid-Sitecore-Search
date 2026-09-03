@@ -46,6 +46,7 @@ export const SearchResultsComponent = ({
   defaultKeyphrase = '',
   defaultItemsPerPage = 10,
 }: ArticleSearchResultsProps) => {
+  const effectiveKeyphrase = defaultKeyphrase?.trim() ?? '';
   const {
     actions: { onItemClick },
     state: { sortType, page, itemsPerPage },
@@ -64,9 +65,14 @@ export const SearchResultsComponent = ({
       sortType: defaultSortType,
       page: defaultPage,
       itemsPerPage: defaultItemsPerPage,
-      keyphrase: defaultKeyphrase,
+      keyphrase: effectiveKeyphrase,
     },
     query: (query) => {
+      // If there's no query in the URL / keyboard input, we should not apply
+      // an empty keyphrase filter (it can return 0 results in the backing API).
+      if (!effectiveKeyphrase) {
+        query.getRequest().resetSearchQueryKeyphrase();
+      }
       if (SEARCH_CONFIG.source !== '') {
         const sources = SEARCH_CONFIG.source.split('|');
         sources.forEach((source) => {
