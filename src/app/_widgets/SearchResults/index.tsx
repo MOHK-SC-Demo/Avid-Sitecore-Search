@@ -50,21 +50,7 @@ export const SearchResultsComponent = ({
   // When the user hasn't typed anything (empty q), send a whitespace keyphrase
   // so the request is still valid but should behave like "match all".
   const effectiveKeyphrase = defaultKeyphrase?.trim() ? defaultKeyphrase.trim() : ' ';
-  const {
-    actions: { onItemClick },
-    state: { sortType, page, itemsPerPage },
-    queryResult: {
-      isLoading,
-      isFetching,
-      error,
-      data: {
-        total_item: totalItems = 0,
-        sort: { choices: sortChoices = [] } = {},
-        facet: facets = [],
-        content: articles = [],
-      } = {},
-    },
-  } = useSearchResults<ArticleModel, InitialState>({
+  const searchResults = useSearchResults<ArticleModel, InitialState>({
     state: {
       sortType: defaultSortType,
       page: defaultPage,
@@ -80,16 +66,25 @@ export const SearchResultsComponent = ({
       }
     },
   });
+
+  const { onItemClick } = searchResults.actions;
+  const { sortType, page, itemsPerPage } = searchResults.state;
+  const { isLoading, isFetching } = searchResults.queryResult;
+  const {
+    total_item: totalItems = 0,
+    sort: { choices: sortChoices = [] } = {},
+    facet: facets = [],
+    content: articles = [],
+  } = searchResults.queryResult.data ?? {};
+
   const totalPages = Math.ceil(totalItems / itemsPerPage);
   const hasResults = articles.length > 0;
   const defaultCardView = 'list';
   const [dir, setDir] = useState(defaultCardView);
   const onToggle = (value = defaultCardView) => setDir(value);
 
-  // If the underlying search request fails, react-query exposes an error.
-  // Without surfacing it, the UI may look like a "0 results" issue only.
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  const queryError: any = error;
+  const queryError = (searchResults.queryResult as any)?.error;
 
   if (isLoading) {
     return (
@@ -181,7 +176,7 @@ export const SearchResultsComponent = ({
             <div className="text-center">
               <h3>0 Results</h3>
               <p className="text-xs text-avid-text-muted mt-2">
-                source: {SEARCH_CONFIG.source} | keyphrase: "{effectiveKeyphrase}"
+                source: {SEARCH_CONFIG.source} | keyphrase: &ldquo;{effectiveKeyphrase}&rdquo;
               </p>
             </div>
           </div>
