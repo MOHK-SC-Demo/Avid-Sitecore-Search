@@ -18,12 +18,22 @@ function normalizeImageUrl(raw?: string | null): string {
   const value = raw.trim();
   if (!value) return DEFAULT_IMG_URL;
 
-  if (value.startsWith('//')) return `https:${value}`;
-  if (value.startsWith('/')) return `https://www.watts.ca${value}`;
-  if (value.startsWith('http://')) return value.replace('http://', 'https://');
-  if (value.startsWith('https://')) return value;
+  let absoluteUrl: string;
 
-  return DEFAULT_IMG_URL;
+  if (value.startsWith('//')) {
+    absoluteUrl = `https:${value}`;
+  } else if (value.startsWith('/')) {
+    absoluteUrl = `https://www.watts.ca${value}`;
+  } else if (value.startsWith('http://')) {
+    absoluteUrl = value.replace('http://', 'https://');
+  } else if (value.startsWith('https://')) {
+    absoluteUrl = value;
+  } else {
+    return DEFAULT_IMG_URL;
+  }
+
+  // Proxy external images through our API route to avoid CORS/hotlink issues on Vercel
+  return `/api/img?url=${encodeURIComponent(absoluteUrl)}`;
 }
 
 export function getImageUrlFromItem(item: Record<string, unknown> | undefined): string {
