@@ -46,7 +46,10 @@ export const SearchResultsComponent = ({
   defaultKeyphrase = '',
   defaultItemsPerPage = 10,
 }: ArticleSearchResultsProps) => {
-  const effectiveKeyphrase = defaultKeyphrase?.trim() ?? '';
+  // Important: the backing API may return 0 items if keyphrase is omitted entirely.
+  // When the user hasn't typed anything (empty q), send a whitespace keyphrase
+  // so the request is still valid but should behave like "match all".
+  const effectiveKeyphrase = defaultKeyphrase?.trim() ? defaultKeyphrase.trim() : ' ';
   const {
     actions: { onItemClick },
     state: { sortType, page, itemsPerPage },
@@ -68,11 +71,6 @@ export const SearchResultsComponent = ({
       keyphrase: effectiveKeyphrase,
     },
     query: (query) => {
-      // If there's no query in the URL / keyboard input, we should not apply
-      // an empty keyphrase filter (it can return 0 results in the backing API).
-      if (!effectiveKeyphrase) {
-        query.getRequest().resetSearchQueryKeyphrase();
-      }
       if (SEARCH_CONFIG.source !== '') {
         const sources = SEARCH_CONFIG.source.split('|');
         sources.forEach((source) => {
@@ -82,6 +80,7 @@ export const SearchResultsComponent = ({
     },
   });
   const totalPages = Math.ceil(totalItems / itemsPerPage);
+  const hasResults = articles.length > 0;
   const defaultCardView = 'list';
   const [dir, setDir] = useState(defaultCardView);
   const onToggle = (value = defaultCardView) => setDir(value);
@@ -103,7 +102,7 @@ export const SearchResultsComponent = ({
             </div>
           </div>
         )}
-        {totalItems > 0 && (
+        {hasResults && (
           <React.Fragment key="1">
             <section className="flex flex-col flex-none relative mt-4 mr-8 w-[25%]">
               <Filter />
@@ -113,7 +112,7 @@ export const SearchResultsComponent = ({
             <section className="flex flex-col flex-[4_1_0%]">
               {/* Sort Select */}
               <section className="flex justify-between text-xs">
-                {totalItems > 0 && (
+                {hasResults && (
                   <QueryResultsSummary
                     currentPage={page}
                     itemsPerPage={itemsPerPage}
@@ -160,7 +159,7 @@ export const SearchResultsComponent = ({
             </section>
           </React.Fragment>
         )}
-        {totalItems <= 0 && !isFetching && (
+        {!hasResults && !isFetching && (
           <div className="w-full flex justify-center">
             <h3>0 Results</h3>
           </div>
