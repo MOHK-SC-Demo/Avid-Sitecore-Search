@@ -41,7 +41,8 @@ export default function RootLayout({
         <meta charSet="UTF-8" />
         <link rel="icon" href="/favicon.ico" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <title>Avid</title>
+        <title>Watts Water Technologies</title>
+        <meta name="description" content="Engineered water solutions for residential, commercial, and industrial systems. Explore products, specifications, and compliance resources from Watts." />
       </head>
       <body className={`${montserrat.variable} antialiased bg-avid-bg text-avid-text`}>
         <LanguageContext.Provider value={{ language, setLanguage }}>

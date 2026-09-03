@@ -46,11 +46,14 @@ export const SearchResultsComponent = ({
   defaultKeyphrase = '',
   defaultItemsPerPage = 10,
 }: ArticleSearchResultsProps) => {
-  // Important: the backing API may return 0 items if keyphrase is omitted entirely.
-  // When the user hasn't typed anything (empty q), send a whitespace keyphrase
-  // so the request is still valid but should behave like "match all".
-  const effectiveKeyphrase = defaultKeyphrase?.trim() ? defaultKeyphrase.trim() : ' ';
-  const searchResults = useSearchResults<ArticleModel, InitialState>({
+  // Use '*' as a wildcard when no keyphrase is provided so the API returns all items
+  const effectiveKeyphrase = defaultKeyphrase?.trim() || '*';
+
+  const {
+    actions: { onItemClick },
+    state: { sortType, page, itemsPerPage },
+    queryResult,
+  } = useSearchResults<ArticleModel, InitialState>({
     state: {
       sortType: defaultSortType,
       page: defaultPage,
@@ -67,24 +70,17 @@ export const SearchResultsComponent = ({
     },
   });
 
-  const { onItemClick } = searchResults.actions;
-  const { sortType, page, itemsPerPage } = searchResults.state;
-  const { isLoading, isFetching } = searchResults.queryResult;
-  const {
-    total_item: totalItems = 0,
-    sort: { choices: sortChoices = [] } = {},
-    facet: facets = [],
-    content: articles = [],
-  } = searchResults.queryResult.data ?? {};
+  const { isLoading, isFetching, data } = queryResult;
+  const totalItems = data?.total_item ?? 0;
+  const sortChoices = data?.sort?.choices ?? [];
+  const facets = data?.facet ?? [];
+  const articles = data?.content ?? [];
 
-  const totalPages = Math.ceil(totalItems / itemsPerPage);
+  const totalPages = Math.ceil(totalItems / (itemsPerPage || 10));
   const hasResults = articles.length > 0;
   const defaultCardView = 'list';
   const [dir, setDir] = useState(defaultCardView);
   const onToggle = (value = defaultCardView) => setDir(value);
-
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  const queryError = (searchResults.queryResult as any)?.error;
 
   if (isLoading) {
     return (
@@ -94,16 +90,6 @@ export const SearchResultsComponent = ({
     );
   }
 
-  if (queryError) {
-    return (
-      <div className="max-w-[1248px] m-auto pt-10 text-avid-text">
-        <h2 className="text-lg font-bold mb-2">Search request failed</h2>
-        <pre className="whitespace-pre-wrap text-sm border border-avid-border rounded-md p-4 bg-avid-surface-elevated">
-          {queryError?.message ?? String(queryError)}
-        </pre>
-      </div>
-    );
-  }
   return (
     <div>
       <div className="flex relative max-w-full px-4 text-avid-text text-opacity-75">
@@ -118,20 +104,16 @@ export const SearchResultsComponent = ({
           <React.Fragment key="1">
             <section className="flex flex-col flex-none relative mt-4 mr-8 w-[25%]">
               <Filter />
-
               <SearchFacets facets={facets} />
             </section>
             <section className="flex flex-col flex-[4_1_0%]">
-              {/* Sort Select */}
               <section className="flex justify-between text-xs">
-                {hasResults && (
-                  <QueryResultsSummary
-                    currentPage={page}
-                    itemsPerPage={itemsPerPage}
-                    totalItems={totalItems}
-                    totalItemsReturned={articles.length}
-                  />
-                )}
+                <QueryResultsSummary
+                  currentPage={page}
+                  itemsPerPage={itemsPerPage}
+                  totalItems={totalItems}
+                  totalItemsReturned={articles.length}
+                />
                 <div>
                   <CardViewSwitcher
                     onToggle={onToggle}
@@ -143,7 +125,6 @@ export const SearchResultsComponent = ({
                 </div>
               </section>
 
-              {/* Results */}
               {dir === 'grid' ? (
                 <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-x-3 md:gap-x-5 xl:gap-x-6 gap-y-3 xl:gap-y-4 ">
                   {articles.map((a, index) => (
@@ -173,12 +154,7 @@ export const SearchResultsComponent = ({
         )}
         {!hasResults && !isFetching && (
           <div className="w-full flex justify-center">
-            <div className="text-center">
-              <h3>0 Results</h3>
-              <p className="text-xs text-avid-text-muted mt-2">
-                source: {SEARCH_CONFIG.source} | keyphrase: &ldquo;{effectiveKeyphrase}&rdquo;
-              </p>
-            </div>
+            <h3 className="text-avid-text-muted py-10">No results found</h3>
           </div>
         )}
       </div>

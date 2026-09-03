@@ -27,7 +27,7 @@ export const HomeHighlightedComponent = (): JSX.Element => {
   const articlesToShow = articles.slice(0, 3);
   return (
     <>
-    <p className="w-full flex justify-around text-avid-text my-10 text-2xl">Highlighted Articles</p>
+    <p className="w-full flex justify-around text-avid-text my-10 text-2xl">Featured products</p>
     <div className="w-full flex justify-around text-avid-text my-10">
       
       <div className="grid grid-cols-3 gap-x-5 gap-y-3 w-[80%]">
