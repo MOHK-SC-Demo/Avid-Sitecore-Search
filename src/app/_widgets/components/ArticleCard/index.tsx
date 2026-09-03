@@ -5,6 +5,7 @@ import Image from 'next/image';
 import type { ActionProp, ItemClickedAction } from '@sitecore-search/react';
 import { DEFAULT_IMG_URL } from '@/app/_data/customizations';
 import type { ArticleModel } from '@/app/_widgets/SearchResults';
+import { getImageUrlFromItem } from '@/app/_utils/image';
 
 type ArticleItemCardProps = {
   className?: string;
@@ -15,7 +16,7 @@ type ArticleItemCardProps = {
 
 
 const ArticleItemCard = ({ className = '', article, index, onItemClick }: ArticleItemCardProps) => {
-  const initialImageUrl = article.image_url?.trim() ? article.image_url : DEFAULT_IMG_URL;
+  const initialImageUrl = getImageUrlFromItem(article as unknown as Record<string, unknown>);
   const [imgSrc, setImgSrc] = useState(initialImageUrl);
 
   const title = article.name || article.title || 'Article';
@@ -32,6 +33,7 @@ const ArticleItemCard = ({ className = '', article, index, onItemClick }: Articl
           alt={title}
           width={500}
           height={115}
+          unoptimized
           loading="lazy"
           onError={() => setImgSrc(DEFAULT_IMG_URL)}
         />

@@ -8,6 +8,7 @@ import type { ActionProp, ItemClickedAction } from '@sitecore-search/react';
 import { ArticleCard } from '@sitecore-search/ui';
 import Image from 'next/image'
 import { DEFAULT_IMG_URL } from '@/app/_data/customizations';
+import { getImageUrlFromItem } from '@/app/_utils/image';
 
 type ArticleCardItemCardProps = {
   className?: string;
@@ -19,7 +20,7 @@ type ArticleCardItemCardProps = {
 
 const ArticleHorizontalItemCard = ({ className = '', article, onItemClick, index }: ArticleCardItemCardProps) => {
   const router = useRouter();
-  const initialImageUrl = article.image_url?.trim() ? article.image_url : DEFAULT_IMG_URL;
+  const initialImageUrl = getImageUrlFromItem(article as unknown as Record<string, unknown>);
   const [imgSrc, setImgSrc] = useState(initialImageUrl);
 
   return (
@@ -34,6 +35,7 @@ const ArticleHorizontalItemCard = ({ className = '', article, onItemClick, index
           alt='alt'
           width={500}
           height={115}
+          unoptimized
           onError={() => setImgSrc(DEFAULT_IMG_URL)}
         />
       </div>

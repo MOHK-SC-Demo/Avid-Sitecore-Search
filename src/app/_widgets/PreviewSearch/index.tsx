@@ -5,11 +5,11 @@ import { useCallback, useState } from 'react';
 import Spinner from '@/app/_widgets/components/Spinner';
 import SuggestionBlock from '@/app/_widgets/components/SuggestionBlock';
 import { DEFAULT_IMG_URL } from '@/app/_data/customizations';
+import { getImageUrlFromItem } from '@/app/_utils/image';
 import type { PreviewSearchInitialState } from '@sitecore-search/react';
 import { WidgetDataType, usePreviewSearch, widget } from '@sitecore-search/react';
 import { ArticleCard, PreviewSearch } from '@sitecore-search/ui';
 import React from 'react';
-import Image from 'next/image'
 import { useRouter } from 'next/navigation'
 
 
@@ -28,17 +28,15 @@ type ArticleModel = {
 
 type InitialState = PreviewSearchInitialState<'itemsPerPage' | 'suggestionsList'>;
 
-const PreviewSearchImage = ({ imageUrl, alt }: { imageUrl?: string; alt: string }) => {
-  const initialImageUrl = imageUrl?.trim() ? imageUrl : DEFAULT_IMG_URL;
+const PreviewSearchImage = ({ item, alt }: { item: Record<string, unknown>; alt: string }) => {
+  const initialImageUrl = getImageUrlFromItem(item);
   const [imgSrc, setImgSrc] = useState(initialImageUrl);
 
   return (
-    <Image
+    <img
       src={imgSrc}
       className="block w-auto max-w-full h-auto max-h-full"
       alt={alt}
-      width={200}
-      height={100}
       onError={() => setImgSrc(DEFAULT_IMG_URL)}
     />
   );
@@ -130,7 +128,7 @@ export const PreviewSearchComponent = ({ defaultItemsPerPage = 6 }) => {
                         >
                           <ArticleCard.Root className="w-full shadow-[2px_2px_4px_rgba(0,0,0,0.3)] rounded-md p-2 cursor-pointer block border-transparent border-solid border text-center focus-within:shadow-[2px_2px_4px_rgba(0,0,0,0.8)] hover:shadow-[2px_2px_4px_rgba(0,0,0,0.8)] text-avid-text">
                             <div className="m-auto mb-[10px] relative h-[6em] flex justify-center items-center overflow-hidden">
-                              <PreviewSearchImage imageUrl={article.image_url} alt={article.name} />
+                              <PreviewSearchImage item={article as unknown as Record<string, unknown>} alt={article.name} />
                             </div>
                             <ArticleCard.Title className="max-h-[2rem] overflow-hidden m-0 mb-2 text-xs">
                               {article.name}
