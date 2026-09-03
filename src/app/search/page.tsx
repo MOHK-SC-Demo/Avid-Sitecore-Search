@@ -6,6 +6,7 @@ import { PAGE_EVENTS_SEARCH } from '@/app/_data/constants';
 import withPageTracking from '@/app/_hocs/withPageTracking';
 import QuestionsAnswers from '@/app/_widgets/QuestionsAnswers';
 import SearchResults from '@/app/_widgets/SearchResults';
+import BrowseAll from '@/app/_widgets/BrowseAll';
 
 const SearchContent = (): JSX.Element => {
   const searchParams = useSearchParams();
@@ -18,17 +19,23 @@ const SearchContent = (): JSX.Element => {
         <h2 className="text-avid-text text-lg w-full text-left">
           {trimmedQuery ? `Showing results for "${trimmedQuery}"` : 'Showing all results'}
         </h2>
-        <QuestionsAnswers
-          key={`${query}-questions`}
-          rfkId="rfkid_qa"
-          defaultKeyphrase={trimmedQuery}
-          defaultRelatedQuestions={4}
-        />
-        <SearchResults
-          key={`${query}-search`}
-          rfkId="rfkid_7"
-          defaultKeyphrase={trimmedQuery}
-        />
+        {trimmedQuery ? (
+          <>
+            <QuestionsAnswers
+              key={`${query}-questions`}
+              rfkId="rfkid_qa"
+              defaultKeyphrase={trimmedQuery}
+              defaultRelatedQuestions={4}
+            />
+            <SearchResults
+              key={`${query}-search`}
+              rfkId="rfkid_7"
+              defaultKeyphrase={trimmedQuery}
+            />
+          </>
+        ) : (
+          <BrowseAll rfkId="rfkid_7" />
+        )}
       </div>
     </div>
   );
