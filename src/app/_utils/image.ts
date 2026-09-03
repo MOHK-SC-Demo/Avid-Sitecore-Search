@@ -1,5 +1,7 @@
 import { DEFAULT_IMG_URL } from '@/app/_data/customizations';
 
+const IMAGE_BASE_URL = 'https://www.watts.com';
+
 const IMAGE_CANDIDATE_KEYS = [
   'image_url',
   'imageUrl',
@@ -18,22 +20,12 @@ function normalizeImageUrl(raw?: string | null): string {
   const value = raw.trim();
   if (!value) return DEFAULT_IMG_URL;
 
-  let absoluteUrl: string;
+  if (value.startsWith('//')) return `https:${value}`;
+  if (value.startsWith('/')) return `${IMAGE_BASE_URL}${value}`;
+  if (value.startsWith('http://')) return value.replace('http://', 'https://');
+  if (value.startsWith('https://')) return value;
 
-  if (value.startsWith('//')) {
-    absoluteUrl = `https:${value}`;
-  } else if (value.startsWith('/')) {
-    absoluteUrl = `https://www.watts.ca${value}`;
-  } else if (value.startsWith('http://')) {
-    absoluteUrl = value.replace('http://', 'https://');
-  } else if (value.startsWith('https://')) {
-    absoluteUrl = value;
-  } else {
-    return DEFAULT_IMG_URL;
-  }
-
-  // Proxy external images through our API route to avoid CORS/hotlink issues on Vercel
-  return `/api/img?url=${encodeURIComponent(absoluteUrl)}`;
+  return DEFAULT_IMG_URL;
 }
 
 export function getImageUrlFromItem(item: Record<string, unknown> | undefined): string {
@@ -43,6 +35,12 @@ export function getImageUrlFromItem(item: Record<string, unknown> | undefined): 
     const candidate = item[key];
     if (typeof candidate === 'string' && candidate.trim()) {
       return normalizeImageUrl(candidate);
+    }
+  }
+
+  for (const [key, value] of Object.entries(item)) {
+    if (/image/i.test(key) && typeof value === 'string' && value.trim()) {
+      return normalizeImageUrl(value);
     }
   }
 

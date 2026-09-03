@@ -8,6 +8,7 @@ const Logo = () => {
         alt="Watts Water Technologies"
         className="mr-8 w-auto"
         style={{ height: `${LOGO_IMAGE_HEIGHT}px` }}
+        referrerPolicy="no-referrer"
       />
     );
   }

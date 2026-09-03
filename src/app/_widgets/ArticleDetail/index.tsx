@@ -1,7 +1,6 @@
 import { JSX } from 'react';
 
-import { DEFAULT_IMAGE } from '@/app/_data/constants';
-import { getImageUrlFromItem } from '@/app/_utils/image';
+import ProductImage from '@/app/_components/ProductImage';
 import type { ArticleModel } from '@/app/_widgets/SearchResults';
 import type { SearchResultsInitialState } from '@sitecore-search/react';
 import { FilterEqual, WidgetDataType, useSearchResults, widget } from '@sitecore-search/react';
@@ -48,14 +47,10 @@ export const ArticleDetailComponent = ({ id }: ArticleDetailProps): JSX.Element 
           <div className="text-left leading-tight text-base text-avid-text-muted">{mainArticle?.description}</div>
         </div>
         <div className="max-w-[50%] min-h-[300px] flex items-center">
-          <img
+          <ProductImage
             className="max-w-[500px]"
-            src={getImageUrlFromItem(mainArticle as unknown as Record<string, unknown>) || DEFAULT_IMAGE}
+            item={mainArticle as unknown as Record<string, unknown>}
             alt={mainArticle.name || mainArticle.title || 'Product image'}
-            onError={(e) => {
-              e.currentTarget.onerror = null;
-              e.currentTarget.src = DEFAULT_IMAGE;
-            }}
           />
         </div>
       </div>
