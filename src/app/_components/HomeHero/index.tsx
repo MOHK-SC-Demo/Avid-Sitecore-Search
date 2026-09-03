@@ -2,53 +2,40 @@
 
 import { JSX, useRef, useEffect } from 'react';
 import {
-  HOME_HERO_VIDEO_URL,
+  HOME_HERO_BACKGROUND_IMAGE_URL,
   HOME_HERO_HEADLINE,
   HOME_HERO_SUBHEADLINE,
   HOME_HERO_DESCRIPTION,
 } from '@/app/_data/customizations';
 
 const HomeHero = (): JSX.Element => {
-  const videoRef = useRef<HTMLVideoElement>(null);
+  const imageRef = useRef<HTMLImageElement>(null);
 
   useEffect(() => {
-    const video = videoRef.current;
-    if (!video) return;
-
-    const play = () => {
-      video.play().catch(() => {});
-    };
-
-    play();
-    video.addEventListener('loadeddata', play);
-    return () => video.removeEventListener('loadeddata', play);
+    const image = imageRef.current;
+    if (!image) return;
+    image.decoding = 'async';
   }, []);
 
   return (
     <section
-      className="relative -mt-[100px] w-full min-h-screen overflow-hidden bg-black"
+      className="relative -mt-[100px] w-full min-h-screen overflow-hidden bg-[#0f3d6f]"
       aria-label="Homepage hero"
     >
-      <video
-        ref={videoRef}
+      <img
+        ref={imageRef}
         className="absolute inset-0 h-full w-full object-cover object-center"
-        autoPlay
-        muted
-        loop
-        playsInline
-        preload="auto"
-        aria-hidden="true"
-      >
-        <source src={HOME_HERO_VIDEO_URL} type="video/mp4" />
-      </video>
+        src={HOME_HERO_BACKGROUND_IMAGE_URL}
+        alt="Commercial water infrastructure supported by Watts solutions"
+      />
 
-      {/* Gradient overlays matching avid.com hero readability */}
+      {/* Layered overlays to match Watts dark-blue visual tone */}
       <div
-        className="absolute inset-0 bg-gradient-to-t from-black via-black/50 to-black/20"
+        className="absolute inset-0 bg-gradient-to-t from-[#0b2746] via-[#0f3d6f]/70 to-[#0f3d6f]/40"
         aria-hidden="true"
       />
       <div
-        className="absolute inset-0 bg-gradient-to-r from-black/60 via-transparent to-transparent"
+        className="absolute inset-0 bg-gradient-to-r from-[#0b2746]/85 via-[#0f3d6f]/45 to-transparent"
         aria-hidden="true"
       />
 

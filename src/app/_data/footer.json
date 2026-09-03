@@ -1,34 +1,34 @@
 [{
-    "mainTitle": "SaaS DXP Products",
-    "items": ["XM Cloud",
-      "Content Hub ONE",
-      "Content Hub DAM",
-      "Content Hub Operations",
-      "Search",
-      "Customer Data Platform",
-      "Personalize",
-      "Send",
-      "Connect",
-      "Discover",
-      "OrderCloud"]
+    "mainTitle": "Products",
+    "items": ["Plumbing and flow control",
+      "Water quality and conditioning",
+      "Drainage solutions",
+      "HVAC and hydronics",
+      "Backflow prevention",
+      "Leak detection and monitoring",
+      "Shutoff and balancing valves",
+      "Regulators and relief valves",
+      "Smart and connected solutions",
+      "Parts and accessories"]
   },{
-    "mainTitle": "Platform DXP Products",
-    "items": ["Experience Manager",
-      "Experience Platform",
-      "Managed Cloud"]
+    "mainTitle": "Solutions",
+    "items": ["Residential",
+      "Commercial",
+      "Industrial",
+      "Municipal"]
   }, {
     "mainTitle": "Resources",
-    "items": ["Training",
-      "Insights blog",
-      "Developer resources",
-      "What's new"]
+    "items": ["Technical documentation",
+      "Product certifications",
+      "Installation guides",
+      "News and events"]
   }, {
     "mainTitle": "Company",
-    "items": ["Newsroom",
+    "items": ["Our story",
       "Contact us",
-      "Office locations",
+      "Where to buy",
       "Careers",
-      "Legal & Trust",
-      "Sitecore brand resources"]
+      "Investor relations",
+      "Legal and privacy"]
   }]
   
