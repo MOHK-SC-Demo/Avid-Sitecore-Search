@@ -46,9 +46,6 @@ export const SearchResultsComponent = ({
   defaultKeyphrase = '',
   defaultItemsPerPage = 10,
 }: ArticleSearchResultsProps) => {
-  // Use '*' as a wildcard when no keyphrase is provided so the API returns all items
-  const effectiveKeyphrase = defaultKeyphrase?.trim() || '*';
-
   const {
     actions: { onItemClick },
     state: { sortType, page, itemsPerPage },
@@ -58,7 +55,7 @@ export const SearchResultsComponent = ({
       sortType: defaultSortType,
       page: defaultPage,
       itemsPerPage: defaultItemsPerPage,
-      keyphrase: effectiveKeyphrase,
+      keyphrase: defaultKeyphrase?.trim() || '',
     },
     query: (query) => {
       if (SEARCH_CONFIG.source !== '') {
