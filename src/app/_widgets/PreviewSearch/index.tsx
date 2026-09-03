@@ -14,7 +14,7 @@ import { useRouter } from 'next/navigation'
 
 
 const SEARCH_CONFIG = {
-  source: process.env.NEXT_PUBLIC_SEARCH_SOURCE as string,
+  source: (process.env.NEXT_PUBLIC_SEARCH_SOURCE || '1208979') as string,
 };
 
 type ArticleModel = {
