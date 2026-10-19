@@ -26,7 +26,7 @@ const SearchContent = (): JSX.Element => {
             defaultRelatedQuestions={4}
           />
         ) : null}
-        <SearchResults key={`${trimmedQuery}-search`} rfkId="rfkid_7" defaultKeyphrase={trimmedQuery} />
+        <SearchResults key={`${trimmedQuery}-search`} rfkId="avid_rfkid__7" defaultKeyphrase={trimmedQuery} />
       </div>
     </div>
   );

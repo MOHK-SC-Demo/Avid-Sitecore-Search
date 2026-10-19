@@ -10,7 +10,7 @@ import ArticleDetailWidget from '@/app/_widgets/ArticleDetail';
 const ArticleDetail = (): JSX.Element => {
   const params = useParams<{ slug: string;  }>()
 
-  return <ArticleDetailWidget key={params?.slug} id={params?.slug} rfkId="rfkid_7" />;
+  return <ArticleDetailWidget key={params?.slug} id={params?.slug} rfkId="avid_rfkid__7" />;
 };
 
 export default withPageTracking(ArticleDetail, PAGE_EVENTS_PDP);
