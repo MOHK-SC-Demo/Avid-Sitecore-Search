@@ -13,7 +13,7 @@ import SortOrder from '@/app/_widgets/components/SortOrder';
 import Spinner from '@/app/_widgets/components/Spinner';
 import { GridIcon, ListBulletIcon } from '@radix-ui/react-icons';
 import type { SearchResultsInitialState, SearchResultsStoreState } from '@sitecore-search/react';
-import { WidgetDataType, useSearchResults, widget } from '@sitecore-search/react';
+import { FilterEqual, FilterNot, WidgetDataType, useSearchResults, widget } from '@sitecore-search/react';
 import React from 'react';
 
 const SEARCH_CONFIG = {
@@ -46,6 +46,7 @@ export const SearchResultsComponent = ({
   defaultKeyphrase = '',
   defaultItemsPerPage = 10,
 }: ArticleSearchResultsProps) => {
+  const keyphrase = defaultKeyphrase.trim();
   const {
     actions: { onItemClick },
     state: { sortType, page, itemsPerPage },
@@ -64,13 +65,18 @@ export const SearchResultsComponent = ({
       sortType: defaultSortType,
       page: defaultPage,
       itemsPerPage: defaultItemsPerPage,
-      keyphrase: defaultKeyphrase,
+      keyphrase,
     },
     query: (query) => {
-      if (SEARCH_CONFIG.source !== '') {
-        const sources = SEARCH_CONFIG.source.split('|');
-        sources.forEach((source) => {
-          query.getRequest().addSource(source.trim());
+      const request = query.getRequest();
+      if (!keyphrase) {
+        // A keyword widget returns nothing when the keyphrase is empty.
+        // Exclude a sentinel id so the request lists every indexed item.
+        request.resetSearchQueryKeyphrase().setSearchFilter(new FilterNot(new FilterEqual('id', '__none__')));
+      }
+      if (SEARCH_CONFIG.source) {
+        SEARCH_CONFIG.source.split('|').forEach((source) => {
+          request.addSource(source.trim());
         });
       }
     },
