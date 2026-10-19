@@ -13,11 +13,11 @@ export const PageEventContext = React.createContext({});
  * So when user navigate is needed to track the page view event manually.
  * This is the purpose of this hoc, set page uri and track the page view event
  */
-const withPageTracking = (
-  Component: React.ComponentType,
+const withPageTracking = <P extends object>(
+  Component: React.ComponentType<P>,
   pageType = PAGE_EVENTS_DEFAULT,
 ) => {
-  const WrappedComponent = () => {
+  const WrappedComponent = (props: P) => {
     const uri = useUri();
     const params = useParams<{ slug: string }>();
     const id = params.slug;
@@ -33,7 +33,7 @@ const withPageTracking = (
 
     return (
       <PageEventContext.Provider value={pageType}>
-        <Component />
+        <Component {...props} />
       </PageEventContext.Provider>
     );
   };

@@ -33,11 +33,8 @@ export const HOME_HERO_DESCRIPTION =
 // Overrides default question in the Q&A widget on the homepage
 export const DEFAULT_QUESTION = 'what is sitecore?' 
 
-// Change if you choose to use a custom highlighted articles widget
-export const HIGHLIGHTED_ARTICLES_RFKID = 'search_home_highlight_articles' 
-
-// Change if you want to show a different content type in the highlighted articles widget. This value is case-sensitive. Default is website_content.
-export const HIGHLIGHTED_ARTICLES_CONTENT_TYPE = 'website_content'
+// Published CEC search widget (content grid) for the homepage highlights.
+export const HIGHLIGHTED_ARTICLES_RFKID = 'avid_search_home_highlight_articles'
 
 // Fallback image when the index has no image or the URL fails to load
 export const DEFAULT_IMG_URL =

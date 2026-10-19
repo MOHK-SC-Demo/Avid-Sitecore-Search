@@ -1,34 +1,62 @@
-[{
-    "mainTitle": "SaaS DXP Products",
-    "items": ["XM Cloud",
-      "Content Hub ONE",
-      "Content Hub DAM",
-      "Content Hub Operations",
-      "Search",
-      "Customer Data Platform",
-      "Personalize",
-      "Send",
-      "Connect",
-      "Discover",
-      "OrderCloud"]
-  },{
-    "mainTitle": "Platform DXP Products",
-    "items": ["Experience Manager",
-      "Experience Platform",
-      "Managed Cloud"]
-  }, {
-    "mainTitle": "Resources",
-    "items": ["Training",
-      "Insights blog",
-      "Developer resources",
-      "What's new"]
-  }, {
+[
+  {
+    "mainTitle": "Products",
+    "items": [
+      { "label": "Pro Tools", "href": "https://www.avid.com/pro-tools" },
+      { "label": "Media Composer", "href": "https://www.avid.com/media-composer" },
+      { "label": "Sibelius", "href": "https://www.avid.com/sibelius" },
+      { "label": "Avid NEXIS", "href": "https://www.avid.com/products/avid-nexis" },
+      { "label": "MediaCentral", "href": "https://www.avid.com/products/mediacentral" },
+      { "label": "Avid VENUE | S6L", "href": "https://www.avid.com/products/venue-s6l-system" },
+      { "label": "Pro Tools | Carbon", "href": "https://www.avid.com/products/pro-tools-carbon" },
+      { "label": "Avid S6", "href": "https://www.avid.com/products/avid-s6" },
+      { "label": "Maestro", "href": "https://www.avid.com/products/maestro" }
+    ]
+  },
+  {
+    "mainTitle": "Solutions",
+    "items": [
+      { "label": "Audio Post Production", "href": "https://www.avid.com/solutions/audio-post-production" },
+      { "label": "Music Production", "href": "https://www.avid.com/solutions/music-creation" },
+      { "label": "Music Notation", "href": "https://www.avid.com/products?categories=%7B1A09E125-58EF-4B15-A869-45D0D349108C%7D" },
+      { "label": "Video Editing", "href": "https://www.avid.com/products?categories=%7BB8A8C43F-5B5E-4CF1-BAAE-4406C166C223%7D" },
+      { "label": "Video Post Production", "href": "https://www.avid.com/solutions/video-post-production" },
+      { "label": "News Production", "href": "https://www.avid.com/solutions/news-production" },
+      { "label": "Live Sound", "href": "https://www.avid.com/products?categories=%7B7C3B764A-C1BE-435F-895B-9FCDB06C62F4%7D" },
+      { "label": "Education", "href": "https://www.avid.com/sibelius/education" },
+      { "label": "Ingest and Playout", "href": "https://www.avid.com/solutions/ingest-and-playout" },
+      { "label": "Media Production in the Cloud", "href": "https://www.avid.com/solutions/media-production-in-the-cloud" }
+    ]
+  },
+  {
+    "mainTitle": "Support",
+    "items": [
+      { "label": "Get Support", "href": "https://www.avid.com/learn-and-support" },
+      { "label": "Knowledge Base", "href": "https://www.avid.com/search#t=KB&sort=relevancy" },
+      { "label": "Product Support", "href": "https://www.avid.com/learn-and-support#Product-Support" },
+      { "label": "Warranty + Repairs", "href": "https://www.avid.com/learn-and-support#Repairs" },
+      { "label": "Support Plans", "href": "https://www.avid.com/learn-and-support#Support-Offerings" },
+      { "label": "Free Tutorials", "href": "https://www.avid.com/tutorials" },
+      { "label": "Find a Course", "href": "https://www.avid.com/learning/find-a-course" },
+      { "label": "Contact Us", "href": "https://www.avid.com/learn-and-support#Help" }
+    ]
+  },
+  {
     "mainTitle": "Company",
-    "items": ["Newsroom",
-      "Contact us",
-      "Office locations",
-      "Careers",
-      "Legal & Trust",
-      "Sitecore brand resources"]
-  }]
-  
+    "items": [
+      { "label": "About Avid", "href": "https://www.avid.com/about-avid" },
+      { "label": "Careers", "href": "https://www.avid.com/careers" },
+      { "label": "Press Center", "href": "https://www.avid.com/press-center" },
+      { "label": "Contact Sales", "href": "https://www.avid.com/contact-sales" },
+      { "label": "Developers", "href": "https://developer.avid.com/" }
+    ]
+  },
+  {
+    "mainTitle": "Store",
+    "items": [
+      { "label": "Shop", "href": "https://shop.avid.com/" },
+      { "label": "Online Store", "href": "https://www.avid.com/contact-online-store" },
+      { "label": "Order Tracking", "href": "https://my.avid.com/products/orderhistory" }
+    ]
+  }
+]

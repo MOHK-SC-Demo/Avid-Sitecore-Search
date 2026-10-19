@@ -1,8 +1,7 @@
 "use client"
 import { useState } from 'react';
 
-import ArticleItemCard from '@/app/_widgets/components/ArticleCard';
-import ArticleHorizontalItemCard from '@/app/_widgets/components/ArticleHorizontalCard';
+import SearchResultCard from '@/app/_widgets/components/SearchResultCard';
 import CardViewSwitcher from '@/app/_widgets/components/CardViewSwitcher';
 import Filter from '@/app/_widgets/components/Filter';
 import QueryResultsSummary from '@/app/_widgets/components/QueryResultsSummary';
@@ -136,18 +135,24 @@ export const SearchResultsComponent = ({
               {dir === 'grid' ? (
                 <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-x-3 md:gap-x-5 xl:gap-x-6 gap-y-3 xl:gap-y-4 ">
                   {articles.map((a, index) => (
-                    <ArticleItemCard key={a.id} article={a as ArticleModel} index={index} onItemClick={onItemClick} />
+                    <SearchResultCard
+                      key={a.id}
+                      article={a as ArticleModel}
+                      index={index}
+                      layout="grid"
+                      onItemClick={onItemClick}
+                    />
                   ))}
                 </div>
               ) : (
                 <div className="w-full">
                   {articles.map((a, index) => (
-                    <ArticleHorizontalItemCard
+                    <SearchResultCard
                       key={a.id}
                       article={a as ArticleModel}
                       index={index}
+                      layout="list"
                       onItemClick={onItemClick}
-                      displayText={true}
                     />
                   ))}
                 </div>
